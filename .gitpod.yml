@@ -1,5 +1,12 @@
-image:
-  file: .gitpod.Dockerfile
+tasks:
+  - name: Install Deno
+    command: curl -fsSL https://deno.land/x/install/install.sh | sh
+  - name: Setup Bash Completions
+    command: /home/gitpod/.deno/bin/deno completions bash > /home/gitpod/.bashrc.d/90-deno
+  - name: DENO_INSTALL
+    command: echo 'export DENO_INSTALL="/home/gitpod/.deno"' >> /home/gitpod/.bashrc.d/90-deno
+  - name: Add deno to path
+    command: echo 'export PATH="$DENO_INSTALL/bin:$PATH"' >> /home/gitpod/.bashrc.d/90-deno
 
 vscode:
   extensions:
